@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Vue로 처리하겠다는 의미로 id 부여 -->
+    <div id="app">
+      <h2>{{message}}</h2>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let model = { message: 'Hello Vue3!' };
+      let vm = Vue.createApp({
+        // 객체 리터럴('{}') 넘어감. 이 객체를 ViewModel 이라구... 데이터와 로직 파트 중 데이터 파트...
+        // 매개변수로 넘어가는 객체를 설정객체라 함.
+        name: 'App',
+
+        // 제일 중요한 함수 부분. return 하는 값이 View 템플릿 영역에서 쓰임.
+        data() {
+          return model;
+        },
+      }).mount('#app'); // 내가 작성한 Vue 적용할 부분의 id 작성
+    </script>
+  </body>
+</html>

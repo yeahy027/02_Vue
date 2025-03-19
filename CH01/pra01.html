@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{message}}</h2>
+      <h2>{{test}}</h2>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      // Model : 비즈니스 로직 결과(데이터)
+      let model = { message: 'Hello Vue3!!!', test: '집' };
+
+      // View Model : model 변경 시 view 수정(proxy)
+      const vm = Vue.createApp({
+        name: 'App',
+        // data : function() {
+        //   return model;
+        // }, -> 이걸 간단히 한 게 아래 data()
+        data() {
+          return model; //proxy 객체
+          // data 함수에서 return 되는 객체는
+          //vue의 반응형 시스템에 의해서 관리된다
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
