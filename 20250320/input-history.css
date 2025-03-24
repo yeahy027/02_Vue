@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  text-align: center;
+}
+
+.input {
+  float: left;
+  /* flex-direction: column; */
+}
+
+.history {
+  display: flex;
+  padding-left: 50px;
+}

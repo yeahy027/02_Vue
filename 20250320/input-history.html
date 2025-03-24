@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>input-history</title>
+    <link rel="stylesheet" href="./input-history.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="input">
+        <h3>입력</h3>
+        <textarea
+          v-model="message"
+          placeholder="내용을 입력하세요"
+          @keyup.exact.enter="addItem"
+        ></textarea>
+      </div>
+
+      <div class="history">
+        <h1>history</h1>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      const vm = Vue.createApp({
+        data() {
+          return {
+            message: '', // textarea에 입력된 값이 저장될 속성
+            history: [], // 입력된 값이 누적될 배열
+          };
+        },
+        methods: {
+          handleKeydown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+              event.preventDefault();
+            }
+          },
+
+          // data의 items에서 index번쨰 요소 제거
+          // -> data 변했다 -> 화면 다시 렌더링
+          removeItem(index) {
+            this.items.splice(index, 1);
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

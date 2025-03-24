@@ -309,6 +309,21 @@
 
         computed: {
           sortedUsers() {
+            // 배열.sort( (a, b) => { return 정수 })
+            // - 배열 요소 정렬 메서드
+            // - 매개변수로 비교 함수를 전달할 수 있음
+            // - 비교 함수는 두 개의 인자를 받아 비교
+            //    - 비교 함수가 양수를 반환하면 a가 b보다 뒤에 정렬됨 (b, a)
+            //    - 비교 함수가 0을 반환하면 a와 b의 순서는 변경되지 않음 (a, b)
+            //    - 비교 함수가 음수를 반환하면 a가 b보다 앞에 정렬됨 (a, b)
+
+            // users.sort((u1, u2) => {
+            //   if(u1[orderBy] > u2[orderBy]) return 1;
+            //   else if (u1[orderBy] === u2[orderBy]) return 0;
+            //   else
+            // })
+            // 뭐 이런식으루...
+
             return [...this.users].sort((a, b) => {
               let key = this.selectedSort;
               if (a[key] < b[key]) return -1;
