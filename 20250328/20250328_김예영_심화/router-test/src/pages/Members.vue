@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="m-4">이날치 멤버</h2>
+    <h2 class="m-4">이 날 치 멤 버</h2>
     <div class="container">
       <div class="row">
         <div
@@ -10,12 +10,11 @@
         >
           <router-link :to="'/members/' + m.id">
             <img
-              :src="m.photo"
-              :title="m.name"
               class="img-thumbnail"
               style="width: 90px; height: 110px"
-            />
-            <br />
+              :src="m.photo"
+              :title="m.name"
+            /><br />
             <h6 class="display-7">{{ m.name }}</h6>
           </router-link>
         </div>
@@ -23,10 +22,8 @@
     </div>
   </div>
 </template>
-
 <script>
 import members from '@/members.json';
-
 export default {
   name: 'Members',
   setup() {

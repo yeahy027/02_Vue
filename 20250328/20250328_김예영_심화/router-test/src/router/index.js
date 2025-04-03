@@ -1,8 +1,4 @@
-import {
-  createRouter,
-  createWebHistory,
-  // isNavigationFailure,
-} from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'; // 이 줄 추가
 
 import Home from '@/pages/Home.vue';
 import About from '@/pages/About.vue';
@@ -12,6 +8,10 @@ import MemberInfo from '@/pages/MemberInfo.vue';
 import NotFound from '@/pages/NotFound.vue';
 
 const membersIdGuard = (to, from) => {
+  // members/:id 경로는 반드시 이전 경로가
+  // /members, /members:id 인 경우만 내비게이션 허용함
+  console.log(`이름은 : ${from.name}`);
+
   if (from.name !== 'members' && from.name !== 'members/id') {
     return false;
   }
@@ -22,33 +22,15 @@ const router = createRouter({
   routes: [
     { path: '/', component: Home },
     { path: '/about', component: About },
-    { path: '/members', component: Members },
+    { path: '/members', name: 'members', component: Members }, // name 속성 추가
     {
       path: '/members/:id',
       name: 'members/id',
       component: MemberInfo,
       beforeEnter: membersIdGuard,
     },
-    {
-      path: '/videos',
-      name: 'videos',
-      component: Videos,
-      children: [{ path: ':id', name: 'videos/id', component: VideoPlayer }],
-    },
+    { path: '/videos', component: Videos },
     { path: '/:paths(.*)*', name: 'NotFound', component: NotFound },
   ],
 });
-
-// router.beforeEach((to) => {
-//   if (to.query && Object.keys(to.query).length > 0) {
-//     return { path: to.path, query: {}, params: to.params };
-//   }
-// });
-
-// router.afterEach((to, from, failure) => {
-//   if (isNavigationFailure(failure)) {
-//     console.log('@@ 내비게이션 중단 : ', failure);
-//   }
-// });
-
 export default router;
